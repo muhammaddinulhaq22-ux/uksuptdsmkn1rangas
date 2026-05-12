@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<meta name="screen-orientation" content="natural">
 <title>UKS UPTD SMKN 1 Rangas</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
 <style>
@@ -502,44 +501,6 @@
     .stat-num { font-size: 22px; }
   }
 
-  /* ===================== ORIENTATION LOCK OVERLAY ===================== */
-  #rotate-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    background: linear-gradient(135deg, var(--green-dark), var(--green));
-    color: white;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    text-align: center;
-    padding: 2rem;
-  }
-  #rotate-overlay.show { display: flex; }
-  .rotate-icon {
-    font-size: 72px;
-    animation: rotateAnim 1.5s ease-in-out infinite;
-  }
-  @keyframes rotateAnim {
-    0%   { transform: rotate(0deg); }
-    30%  { transform: rotate(-90deg); }
-    60%  { transform: rotate(-90deg); }
-    100% { transform: rotate(0deg); }
-  }
-  .rotate-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 26px;
-    font-weight: 700;
-  }
-  .rotate-desc {
-    font-size: 15px;
-    opacity: 0.85;
-    max-width: 280px;
-    line-height: 1.6;
-  }
-
   /* ===================== FORM IDENTITAS ===================== */
   .identitas-overlay {
     position: fixed; inset: 0;
@@ -739,12 +700,6 @@
 </head>
 <body>
 
-<!-- ORIENTATION OVERLAY -->
-<div id="rotate-overlay">
-  <div class="rotate-icon">📱</div>
-  <div class="rotate-title">Putar Perangkatmu</div>
-  <div class="rotate-desc">Untuk pengalaman terbaik di HP, gunakan mode <strong>Portrait</strong> (tegak).</div>
-</div>
 
 <!-- FORM IDENTITAS -->
 <div class="identitas-overlay" id="identitas-overlay" style="display:none;">
@@ -896,7 +851,7 @@
       <div class="card" onclick="showPage('soal')" style="cursor:pointer;">
         <div class="card-icon icon-teal">🩹</div>
         <h3>Soal P3K</h3>
-        <p>Latihan soal tentang Pertolongan Pertama Pada Kecelakaan untuk Anggota UKS.</p>
+        <p>Latihan soal tentang Pertolongan Pertama Pada Kecelakaan untuk kader UKS.</p>
       </div>
       <div class="card" onclick="showPage('soal')" style="cursor:pointer;">
         <div class="card-icon icon-amber">🚨</div>
@@ -1729,55 +1684,6 @@ function scrollToTrias(id) {
     setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
   }
 }
-
-// =============================================
-// ORIENTATION LOCK
-// HP (layar kecil) → wajib Portrait
-// Laptop/desktop (layar besar) → bebas (landscape natural)
-// =============================================
-(function() {
-  const overlay = document.getElementById('rotate-overlay');
-
-  function isMobile() {
-    // Anggap mobile jika lebar fisik layar ≤ 900px (touch device / HP / tablet kecil)
-    return window.screen.width <= 900 || window.screen.height <= 900;
-  }
-
-  function checkOrientation() {
-    if (!isMobile()) {
-      // Desktop/laptop: sembunyikan overlay, tidak ada pembatasan
-      overlay.classList.remove('show');
-      return;
-    }
-
-    // Deteksi orientasi
-    let isLandscape = false;
-
-    if (window.screen.orientation) {
-      // API modern
-      isLandscape = window.screen.orientation.type.startsWith('landscape');
-    } else {
-      // Fallback: window.orientation (deprecated tapi masih jalan di banyak HP)
-      isLandscape = Math.abs(window.orientation) === 90;
-    }
-
-    if (isLandscape) {
-      overlay.classList.add('show');
-    } else {
-      overlay.classList.remove('show');
-    }
-  }
-
-  // Jalankan saat pertama load
-  checkOrientation();
-
-  // Pantau perubahan orientasi
-  if (window.screen.orientation) {
-    window.screen.orientation.addEventListener('change', checkOrientation);
-  }
-  window.addEventListener('orientationchange', checkOrientation);
-  window.addEventListener('resize', checkOrientation);
-})();
 </script>
 </body>
 </html>
