@@ -734,6 +734,94 @@
 
   /* DIVIDER */
   .divider { border: none; border-top: 1px solid var(--gray-100); margin: 0; }
+
+
+  /* COUNTDOWN */
+  .cd-box {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 14px;
+    padding: 16px 20px;
+    min-width: 80px;
+    text-align: center;
+  }
+  .cd-num {
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+  .cd-label {
+    font-size: 12px;
+    opacity: 0.8;
+    margin-top: 6px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .cd-sep {
+    font-size: 32px;
+    font-weight: 800;
+    color: rgba(255,255,255,0.7);
+    align-self: center;
+    padding-bottom: 20px;
+  }
+  @media (max-width: 480px) {
+    .cd-num { font-size: 26px; }
+    .cd-box { min-width: 60px; padding: 12px 10px; }
+    .cd-sep { font-size: 22px; }
+  }
+
+  /* PENDAFTARAN */
+  .daftar-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--gray-100);
+    min-height: 44px;
+  }
+  .daftar-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-800);
+    width: 200px;
+    flex-shrink: 0;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: 0.2px;
+  }
+  .daftar-colon {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gray-800);
+    margin: 0 12px 0 4px;
+    flex-shrink: 0;
+  }
+  .daftar-input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--text);
+    background: transparent;
+    padding: 6px 4px;
+    border-bottom: 1.5px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .daftar-input:focus { border-bottom-color: var(--green); background: var(--green-light); border-radius: 4px; }
+  .daftar-input::placeholder { color: var(--gray-400); }
+  select.daftar-input { cursor: pointer; }
+  textarea.daftar-input { border: 1.5px solid var(--gray-200); border-radius: 8px; padding: 10px 12px; background: var(--gray-50); margin-top: 4px; }
+  textarea.daftar-input:focus { border-color: var(--green); background: white; }
+  .daftar-input.error { border-bottom-color: #dc2626 !important; background: #fff5f5; border-radius: 4px; }
+
+  @media (max-width: 600px) {
+    .daftar-label { width: 140px; font-size: 11.5px; }
+    .daftar-colon { margin: 0 8px 0 2px; }
+    .daftar-input { font-size: 13px; }
+  }
 </style>
 </head>
 <body>
@@ -793,6 +881,7 @@
       <li><a href="#" id="nav-soal" onclick="showPage('soal')">Soal Latihan</a></li>
       <li><a href="#" id="nav-trias" onclick="showPage('trias')">Trias UKS</a></li>
       <li><a href="#" id="nav-kontak" onclick="showPage('kontak')">Kontak</a></li>
+      <li><a href="#" id="nav-daftar" onclick="showPage('daftar')" style="background:var(--green);color:white;border-radius:8px;">Daftar UKS</a></li>
     </ul>
   </div>
 </nav>
@@ -809,7 +898,7 @@
       <p>Mendukung tumbuh kembang siswa melalui pelayanan kesehatan, edukasi, dan lingkungan sekolah yang bersih dan sehat.</p>
       <div class="hero-btns">
         <a href="#" class="btn-primary" onclick="showPage('program')">Lihat Program Kami</a>
-        <a href="#" class="btn-outline" onclick="showPage('kontak')">Hubungi Kami</a>
+        <a href="#" class="btn-outline" onclick="showPage('daftar')">Daftar Anggota UKS</a>
       </div>
     </div>
   </div>
@@ -1318,6 +1407,21 @@
               <div class="info-value">0853-9428-1718</div>
             </div>
           </li>
+          <li class="info-item">
+            <div class="info-icon" style="background:linear-gradient(135deg,#f9ce34,#ee2a7b,#6228d7); padding:0; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+                <img src="data:image/webp;base64,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" alt="Instagram" style="width:26px; height:26px; object-fit:contain;">
+              </div>
+            <div>
+              <div class="info-label">Instagram</div>
+              <div class="info-value">
+                <a href="https://instagram.com/uks_smkn1rangas" target="_blank" rel="noopener"
+                   style="color:var(--green-dark); text-decoration:none; font-weight:700; display:inline-flex; align-items:center; gap:6px;">
+                  @uks_smkn1rangas
+                  <span style="font-size:11px; background:var(--green-light); color:var(--green); padding:2px 8px; border-radius:100px; font-weight:600;">Follow</span>
+                </a>
+              </div>
+            </div>
+          </li>
         </ul>
       </div>
       <div>
@@ -1329,8 +1433,169 @@
   </div>
 </div>
 
+<!-- PENDAFTARAN -->
+<div class="page" id="page-daftar">
+  <div class="section" style="padding-top: 60px; max-width: 820px;">
+    <div class="section-tag">Bergabung Bersama Kami</div>
+    <div class="section-title">Formulir Pendaftaran</div>
+    <p class="section-desc">Formulir Pendaftaran Calon Anggota UKS Angkatan Ke-5</p>
+
+    <!-- COUNTDOWN (tampil sebelum 17 Juli 2026) -->
+    <div id="daftar-countdown-wrap" style="display:none;">
+      <div style="background:linear-gradient(135deg,var(--green-dark),var(--green),var(--teal)); border-radius:var(--radius); padding:48px 32px; text-align:center; color:white; margin-bottom:24px;">
+        <div style="font-size:48px; margin-bottom:16px;">🔒</div>
+        <h2 style="font-family:'DM Serif Display',serif; font-size:28px; margin-bottom:8px;">Pendaftaran Belum Dibuka</h2>
+        <p style="opacity:0.85; font-size:15px; margin-bottom:32px; line-height:1.7;">Pendaftaran Calon Anggota UKS Angkatan Ke-5 akan dibuka pada<br><strong>17 Juli 2026</strong>. Pantau terus!</p>
+        <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
+          <div class="cd-box"><div class="cd-num" id="cd-hari">--</div><div class="cd-label">Hari</div></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-box"><div class="cd-num" id="cd-jam">--</div><div class="cd-label">Jam</div></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-box"><div class="cd-num" id="cd-menit">--</div><div class="cd-label">Menit</div></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-box"><div class="cd-num" id="cd-detik">--</div><div class="cd-label">Detik</div></div>
+        </div>
+      </div>
+      <div style="background:var(--accent-light); border:1px solid #f0c050; border-radius:var(--radius-sm); padding:18px 22px;">
+        <p style="font-size:13px; color:#7a5000; font-weight:600; margin-bottom:8px;">📌 Informasi Pendaftaran</p>
+        <ul style="padding-left:18px; color:#7a5000; font-size:13px; line-height:1.8;">
+          <li>Pendaftaran dibuka mulai <strong>17 Juli 2026</strong></li>
+          <li>Terbuka untuk siswa kelas X dan XI SMKN 1 Rangas</li>
+          <li>Peserta yang lolos seleksi akan dihubungi melalui WhatsApp</li>
+          <li>Informasi lebih lanjut hubungi Sekretariat UKS</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Header surat -->
+    <div id="daftar-sukses" style="display:none; background:linear-gradient(135deg,var(--green),var(--teal)); color:white; border-radius:var(--radius); padding:40px; text-align:center; margin-bottom:32px;">
+      <div style="font-size:56px; margin-bottom:16px;">🎉</div>
+      <h2 style="font-family:'DM Serif Display',serif; font-size:28px; margin-bottom:12px;">Pendaftaran Berhasil!</h2>
+      <p style="opacity:0.9; font-size:15px; line-height:1.7;" id="sukses-pesan"></p>
+      <button onclick="resetDaftar()" style="margin-top:24px; background:white; color:var(--green-dark); border:none; padding:12px 28px; border-radius:10px; font-size:15px; font-weight:700; cursor:pointer; font-family:inherit;">Daftar Lagi</button>
+    </div>
+
+    <div id="daftar-form-wrap">
+      <!-- Kop surat visual -->
+      <div style="background:white; border:2px solid var(--gray-200); border-radius:var(--radius); overflow:hidden; margin-bottom:28px;">
+        <div style="background:linear-gradient(135deg,var(--green-dark),var(--green),var(--teal)); height:6px;"></div>
+        <div style="padding:28px 32px 20px; border-bottom:3px solid var(--gray-800);">
+          <div style="text-align:center;">
+            <p style="font-size:13px; color:var(--gray-800); font-weight:500; margin-bottom:2px;">PEMERINTAH PROVINSI SULAWESI BARAT</p>
+            <p style="font-size:13px; color:var(--gray-800); font-weight:500; margin-bottom:2px;">DINAS PENDIDIKAN DAN KEBUDAYAAN DAERAH</p>
+            <p style="font-size:18px; color:var(--gray-800); font-weight:800; margin-bottom:2px;">UPTD SMK NEGERI 1 RANGAS</p>
+            <p style="font-size:15px; color:var(--gray-800); font-weight:700; margin-bottom:6px;">SEKRETARIAT UKS</p>
+            <p style="font-size:11px; color:var(--text-muted);">TELP. 0426-2703044 KP. 91512 Jln. H. ABD. MALIK PATTANA ENDENG KM. 0</p>
+            <p style="font-size:11px; color:var(--text-muted);">KEL. RANGAS KEC. SIMBORO KAB. MAMUJU</p>
+          </div>
+        </div>
+        <div style="padding:18px 32px; text-align:center; background:var(--gray-50); border-bottom:1px solid var(--gray-100);">
+          <p style="font-size:15px; font-weight:800; color:var(--gray-800); letter-spacing:0.3px;">FORMULIR PENDAFTARAN CALON ANGGOTA UKS ANGKATAN KE- 5</p>
+        </div>
+
+        <!-- Form fields bergaya kop surat -->
+        <div style="padding:28px 32px 32px;" id="daftar-form-inner">
+          <div class="daftar-row">
+            <span class="daftar-label">NAMA LENGKAP</span>
+            <span class="daftar-colon">:</span>
+            <input type="text" class="daftar-input" id="d-nama" placeholder="Tulis nama lengkap" maxlength="80">
+          </div>
+          <div class="daftar-row">
+            <span class="daftar-label">NAMA PANGGILAN</span>
+            <span class="daftar-colon">:</span>
+            <input type="text" class="daftar-input" id="d-panggilan" placeholder="Nama panggilan" maxlength="30">
+          </div>
+          <div class="daftar-row">
+            <span class="daftar-label">KELAS</span>
+            <span class="daftar-colon">:</span>
+            <input type="text" class="daftar-input" id="d-kelas" placeholder="Contoh: X TKR 1" maxlength="20">
+          </div>
+          <div class="daftar-row">
+            <span class="daftar-label" style="text-decoration:underline;">TEMPAT TANGGAL LAHIR</span>
+            <span class="daftar-colon">:</span>
+            <div style="display:flex; gap:10px; flex:1; min-width:0;">
+              <input type="text" class="daftar-input" id="d-tempatlahir" placeholder="Tempat lahir" maxlength="40" style="flex:1; min-width:0;">
+              <input type="date" class="daftar-input" id="d-tgllahir" style="flex:1; min-width:0;">
+            </div>
+          </div>
+          <div class="daftar-row">
+            <span class="daftar-label">JENIS KELAMIN</span>
+            <span class="daftar-colon">:</span>
+            <select class="daftar-input" id="d-jk">
+              <option value="">-- Pilih --</option>
+              <option>Laki-laki</option>
+              <option>Perempuan</option>
+            </select>
+          </div>
+          <div class="daftar-row">
+            <span class="daftar-label">AGAMA</span>
+            <span class="daftar-colon">:</span>
+            <select class="daftar-input" id="d-agama">
+              <option value="">-- Pilih --</option>
+              <option>Islam</option>
+              <option>Kristen Protestan</option>
+              <option>Kristen Katolik</option>
+              <option>Hindu</option>
+              <option>Buddha</option>
+              <option>Konghucu</option>
+            </select>
+          </div>
+          <div class="daftar-row">
+            <span class="daftar-label">ALAMAT RUMAH</span>
+            <span class="daftar-colon">:</span>
+            <input type="text" class="daftar-input" id="d-alamat" placeholder="Alamat lengkap" maxlength="120">
+          </div>
+          <div class="daftar-row">
+            <span class="daftar-label">NO HP</span>
+            <span class="daftar-colon">:</span>
+            <input type="tel" class="daftar-input" id="d-hp" placeholder="Contoh: 0812-xxxx-xxxx" maxlength="20">
+          </div>
+          <div class="daftar-row">
+            <span class="daftar-label">NAMA ORTU/WALI</span>
+            <span class="daftar-colon">:</span>
+            <input type="text" class="daftar-input" id="d-ortu" placeholder="Nama orang tua / wali" maxlength="80">
+          </div>
+          <div class="daftar-row">
+            <span class="daftar-label">NO HP ORTU/WALI</span>
+            <span class="daftar-colon">:</span>
+            <input type="tel" class="daftar-input" id="d-hportu" placeholder="Nomor HP orang tua / wali" maxlength="20">
+          </div>
+          <div class="daftar-row" style="align-items:flex-start;">
+            <span class="daftar-label" style="padding-top:10px; text-decoration:underline;">ALASAN INGIN BERGABUNG</span>
+            <span class="daftar-colon" style="padding-top:10px;">:</span>
+            <textarea class="daftar-input" id="d-alasan" placeholder="Tuliskan alasan kamu ingin bergabung UKS..." rows="4" style="resize:vertical; line-height:1.6;"></textarea>
+          </div>
+
+          <div id="daftar-error" style="display:none; background:#fee2e2; color:#7f1d1d; border-radius:8px; padding:12px 16px; font-size:14px; margin-top:16px; border-left:3px solid #dc2626;"></div>
+
+          <div style="margin-top:28px; display:flex; gap:12px; justify-content:flex-end; flex-wrap:wrap;">
+            <button onclick="resetDaftar()" style="padding:12px 24px; border-radius:10px; border:1.5px solid var(--gray-200); background:white; color:var(--text-muted); font-size:14px; font-weight:600; cursor:pointer; font-family:inherit;">Reset</button>
+            <button onclick="kirimDaftar()" id="btn-kirim-daftar" style="padding:12px 28px; border-radius:10px; background:linear-gradient(135deg,var(--green),var(--teal)); color:white; border:none; font-size:15px; font-weight:700; cursor:pointer; font-family:inherit; transition:all 0.2s;">Kirim Pendaftaran →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info penting -->
+      <div style="background:var(--accent-light); border:1px solid #f0c050; border-radius:var(--radius-sm); padding:18px 22px; margin-bottom:20px;">
+        <p style="font-size:13px; color:#7a5000; font-weight:600; margin-bottom:8px;">📌 Informasi Penting</p>
+        <ul style="padding-left:18px; color:#7a5000; font-size:13px; line-height:1.8;">
+          <li>Pendaftaran dibuka untuk siswa kelas X dan XI SMKN 1 Rangas</li>
+          <li>Peserta yang lolos seleksi akan dihubungi melalui WhatsApp</li>
+          <li>Hasil seleksi akan diumumkan paling lambat 2 minggu setelah penutupan</li>
+          <li>Informasi lebih lanjut hubungi Sekretariat UKS di ruang UKS</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
 <footer>
   <strong>UKS UPTD SMKN 1 Rangas</strong> &nbsp;|&nbsp; Usaha Kesehatan Sekolah &nbsp;|&nbsp; © 2025 Hak Cipta Dilindungi
+  <br><br>
+  <a href="https://instagram.com/uks_smkn1rangas" target="_blank" rel="noopener"
+     style="color:rgba(255,255,255,0.8); text-decoration:none; font-size:13px; display:inline-flex; align-items:center; gap:6px;">
+    <img src="data:image/webp;base64,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" alt="Instagram" style="width:16px; height:16px; object-fit:contain; vertical-align:middle; background:linear-gradient(135deg,#f9ce34,#ee2a7b,#6228d7); border-radius:4px; padding:2px;"> &nbsp;@uks_smkn1rangas
+  </a>
 </footer>
 
 <script>
@@ -1727,6 +1992,155 @@ function scrollToTrias(id) {
     setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
   }
 }
+
+// =============================================
+// PENDAFTARAN UKS
+// =============================================
+function kirimDaftar() {
+  const fields = [
+    { id: 'd-nama', label: 'Nama Lengkap' },
+    { id: 'd-panggilan', label: 'Nama Panggilan' },
+    { id: 'd-kelas', label: 'Kelas' },
+    { id: 'd-tempatlahir', label: 'Tempat Lahir' },
+    { id: 'd-tgllahir', label: 'Tanggal Lahir' },
+    { id: 'd-jk', label: 'Jenis Kelamin' },
+    { id: 'd-agama', label: 'Agama' },
+    { id: 'd-alamat', label: 'Alamat Rumah' },
+    { id: 'd-hp', label: 'No HP' },
+    { id: 'd-ortu', label: 'Nama Ortu/Wali' },
+    { id: 'd-hportu', label: 'No HP Ortu/Wali' },
+    { id: 'd-alasan', label: 'Alasan Ingin Bergabung' },
+  ];
+
+  // Clear previous errors
+  fields.forEach(f => {
+    const el = document.getElementById(f.id);
+    el.classList.remove('error');
+  });
+  document.getElementById('daftar-error').style.display = 'none';
+
+  const missing = fields.filter(f => !document.getElementById(f.id).value.trim());
+  if (missing.length > 0) {
+    missing.forEach(f => document.getElementById(f.id).classList.add('error'));
+    const errEl = document.getElementById('daftar-error');
+    errEl.style.display = 'block';
+    errEl.textContent = '⚠️ Harap lengkapi: ' + missing.map(f => f.label).join(', ');
+    document.getElementById(missing[0].id).focus();
+    return;
+  }
+
+  const btn = document.getElementById('btn-kirim-daftar');
+  btn.disabled = true;
+  btn.textContent = 'Mengirim...';
+
+  // Simpan ke Supabase (tabel pendaftaran_uks)
+  simpanPendaftaran().then(() => {
+    btn.disabled = false;
+    btn.textContent = 'Kirim Pendaftaran →';
+    const nama = document.getElementById('d-nama').value.trim();
+    const kelas = document.getElementById('d-kelas').value.trim();
+    document.getElementById('sukses-pesan').textContent =
+      nama + ' dari kelas ' + kelas + ', pendaftaran kamu telah kami terima. Tim UKS akan menghubungi kamu melalui WhatsApp untuk informasi selanjutnya. Semangat! 💪';
+    document.getElementById('daftar-form-wrap').style.display = 'none';
+    document.getElementById('daftar-sukses').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+async function simpanPendaftaran() {
+  if (!SUPABASE_URL || !SUPABASE_KEY) return;
+  const data = {
+    nama_lengkap: document.getElementById('d-nama').value.trim(),
+    nama_panggilan: document.getElementById('d-panggilan').value.trim(),
+    kelas: document.getElementById('d-kelas').value.trim(),
+    tempat_lahir: document.getElementById('d-tempatlahir').value.trim(),
+    tanggal_lahir: document.getElementById('d-tgllahir').value,
+    jenis_kelamin: document.getElementById('d-jk').value,
+    agama: document.getElementById('d-agama').value,
+    alamat: document.getElementById('d-alamat').value.trim(),
+    no_hp: document.getElementById('d-hp').value.trim(),
+    nama_ortu: document.getElementById('d-ortu').value.trim(),
+    no_hp_ortu: document.getElementById('d-hportu').value.trim(),
+    alasan: document.getElementById('d-alasan').value.trim(),
+    waktu_daftar: new Date().toISOString()
+  };
+  try {
+    await fetch(`${SUPABASE_URL}/rest/v1/pendaftaran_uks`, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_KEY,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify(data)
+    });
+    console.log('✅ Pendaftaran tersimpan ke Supabase');
+  } catch(e) {
+    console.warn('⚠️ Gagal simpan pendaftaran:', e);
+  }
+}
+
+function resetDaftar() {
+  ['d-nama','d-panggilan','d-kelas','d-tempatlahir','d-tgllahir','d-jk','d-agama','d-alamat','d-hp','d-ortu','d-hportu','d-alasan']
+    .forEach(id => {
+      const el = document.getElementById(id);
+      el.value = '';
+      el.classList.remove('error');
+    });
+  document.getElementById('daftar-error').style.display = 'none';
+  document.getElementById('daftar-sukses').style.display = 'none';
+  document.getElementById('daftar-form-wrap').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// =============================================
+// COUNTDOWN & GATE PENDAFTARAN
+// =============================================
+const TANGGAL_BUKA = new Date('2026-07-17T00:00:00+08:00'); // WITA = UTC+8
+
+function cekStatusDaftar() {
+  const now = new Date();
+  const sudahBuka = now >= TANGGAL_BUKA;
+
+  const navDaftar = document.getElementById('nav-daftar');
+  const countdownWrap = document.getElementById('daftar-countdown-wrap');
+  const formWrap = document.getElementById('daftar-form-wrap');
+  const sukses = document.getElementById('daftar-sukses');
+
+  if (sudahBuka) {
+    // Form terbuka
+    if (countdownWrap) countdownWrap.style.display = 'none';
+    if (formWrap && sukses.style.display === 'none') formWrap.style.display = 'block';
+    // Update label nav
+    if (navDaftar) { navDaftar.textContent = 'Daftar UKS'; navDaftar.style.opacity = '1'; }
+  } else {
+    // Masih countdown
+    if (countdownWrap) countdownWrap.style.display = 'block';
+    if (formWrap) formWrap.style.display = 'none';
+    if (sukses) sukses.style.display = 'none';
+    // Hitung selisih
+    const selisih = TANGGAL_BUKA - now;
+    const hari   = Math.floor(selisih / (1000 * 60 * 60 * 24));
+    const jam    = Math.floor((selisih % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const menit  = Math.floor((selisih % (1000 * 60 * 60)) / (1000 * 60));
+    const detik  = Math.floor((selisih % (1000 * 60)) / 1000);
+    const pad = n => String(n).padStart(2, '0');
+    const elH = document.getElementById('cd-hari');
+    const elJ = document.getElementById('cd-jam');
+    const elM = document.getElementById('cd-menit');
+    const elD = document.getElementById('cd-detik');
+    if (elH) elH.textContent = pad(hari);
+    if (elJ) elJ.textContent = pad(jam);
+    if (elM) elM.textContent = pad(menit);
+    if (elD) elD.textContent = pad(detik);
+  }
+}
+
+// Jalankan saat load dan setiap detik
+cekStatusDaftar();
+setInterval(cekStatusDaftar, 1000);
+
 </script>
 </body>
 </html>
