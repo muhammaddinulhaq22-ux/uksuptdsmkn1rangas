@@ -676,22 +676,60 @@
   .pengurus-unit {
     font-size: 12px; color: var(--text-muted); line-height: 1.5;
   }
-  /* Kepala sekolah — full width card */
+  /* Kepala sekolah + Wakasek — dua kartu sejajar di tengah */
   .pengurus-kepala-wrap {
     margin-bottom: 24px;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
   }
   .pengurus-kepala-wrap .pengurus-card {
-    max-width: 380px;
-    margin: 0 auto;
+    width: 340px;
+    flex-shrink: 0;
   }
+  .pengurus-card.wakasek::before { background: linear-gradient(90deg, #7c3aed, #a855f7); }
+  .pengurus-card.wakasek .pengurus-avatar { background: linear-gradient(135deg, #7c3aed, #a855f7); box-shadow: 0 4px 16px rgba(124,58,237,0.3); }
+  .pengurus-card.wakasek .pengurus-jabatan { background: #f3e8ff; color: #6d28d9; }
 
   @media (max-width: 768px) {
     .pengurus-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .pengurus-kepala-wrap { flex-direction: column; align-items: center; gap: 14px; }
+    .pengurus-kepala-wrap .pengurus-card { width: 100%; max-width: 320px; }
     .pengurus-avatar { width: 64px; height: 64px; font-size: 24px; }
     .pengurus-nama { font-size: 14px; }
   }
   @media (max-width: 480px) {
     .pengurus-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ===================== ORIENTASI OTOMATIS ===================== */
+  /* Portrait (HP vertikal) */
+  @media (orientation: portrait) and (max-width: 768px) {
+    .hero { padding: 40px 1rem 70px; }
+    .hero h1 { font-size: 26px; }
+    .hero p { font-size: 14px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .cards-grid { grid-template-columns: 1fr; }
+    .profile-layout { grid-template-columns: 1fr; }
+    .vm-grid { grid-template-columns: 1fr; }
+    .article-grid { grid-template-columns: 1fr; }
+    .kontak-layout { grid-template-columns: 1fr; }
+    .pengurus-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .pengurus-kepala-wrap { flex-direction: column; align-items: center; }
+    .nav-inner { height: 56px; padding: 0 0.75rem; }
+    .nav-links a { padding: 6px 8px; font-size: 12px; }
+  }
+
+  /* Landscape (HP horizontal / tablet) */
+  @media (orientation: landscape) and (max-width: 900px) {
+    .hero { padding: 36px 2rem 60px; }
+    .hero h1 { font-size: 32px; }
+    .stats-grid { grid-template-columns: repeat(4, 1fr); }
+    .cards-grid { grid-template-columns: repeat(2, 1fr); }
+    .pengurus-grid { grid-template-columns: repeat(3, 1fr); }
+    .pengurus-kepala-wrap { flex-direction: row; justify-content: center; }
+    .article-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
   /* DIVIDER */
@@ -921,12 +959,17 @@
     <div class="section-title">Pengurus UKS</div>
     <p class="section-desc">Kenali para pengurus yang dengan penuh dedikasi menjalankan program Usaha Kesehatan Sekolah di UPTD SMKN 1 Rangas.</p>
 
-    <!-- Kepala Sekolah -->
+    <!-- Kepala Sekolah + Wakasek Kesiswaan -->
     <div class="pengurus-kepala-wrap">
       <div class="pengurus-card kepala">
         <div class="pengurus-avatar">MH</div>
         <div class="pengurus-jabatan">Kepala Sekolah UPTD SMKN 1 RANGAS</div>
         <div class="pengurus-nama">Drs. H. Mahmud, M.Si</div>
+      </div>
+      <div class="pengurus-card wakasek">
+        <div class="pengurus-avatar">NA</div>
+        <div class="pengurus-jabatan">Wakasek Kesiswaan UPTD SMKN 1 RANGAS</div>
+        <div class="pengurus-nama">Nadamar, S.Pd</div>
       </div>
     </div>
 
