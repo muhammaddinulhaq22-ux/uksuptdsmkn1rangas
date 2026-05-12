@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>UKS UPTD SMKN 1 Rangas</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
 <style>
@@ -108,6 +108,11 @@
   /* PAGES */
   .page { display: none; animation: fadeIn 0.3s ease; }
   .page.active { display: block; }
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+  }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
   /* HERO */
@@ -457,11 +462,200 @@
   .soal-option.salah .opt-label { background:#dc2626; color:white; }
   .soal-penjelasan { margin-top:14px; padding:12px 16px; background:var(--gray-50); border-left:3px solid var(--green); border-radius:0 8px 8px 0; font-size:13px; color:var(--text-muted); line-height:1.65; display:none; }
 
+
+  /* ===================== RESPONSIVE MOBILE ===================== */
+  @media (max-width: 768px) {
+    .nav-inner { padding: 0 1rem; height: 60px; }
+    .nav-title { font-size: 11px; }
+    .nav-sub { font-size: 10px; }
+    .nav-logo { width: 40px; height: 40px; }
+    .nav-links { gap: 2px; }
+    .nav-links a { padding: 6px 8px; font-size: 12px; }
+
+    .hero { padding: 48px 1rem 80px; }
+    .hero h1 { font-size: 28px; }
+    .hero p { font-size: 15px; }
+    .hero-btns { flex-direction: column; }
+    .btn-primary, .btn-outline { text-align: center; }
+
+    .stats-bar { padding: 0 1rem; margin-top: -28px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .stat-item { border-right: none; border-bottom: 1px solid var(--gray-100); }
+    .stat-item:nth-child(odd) { border-right: 1px solid var(--gray-100); }
+    .stat-item:nth-last-child(-n+2) { border-bottom: none; }
+
+    .section { padding: 40px 1rem; }
+    .section-title { font-size: 26px; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .profile-layout { grid-template-columns: 1fr; }
+    .profile-img { height: 200px; font-size: 56px; }
+    .vm-grid { grid-template-columns: 1fr; }
+    .article-grid { grid-template-columns: 1fr; }
+    .kontak-layout { grid-template-columns: 1fr; }
+    .map-box { height: 240px; }
+  }
+
+  @media (max-width: 480px) {
+    .nav-links a { padding: 5px 6px; font-size: 11px; }
+    .hero h1 { font-size: 24px; }
+    .stat-num { font-size: 22px; }
+  }
+
+  /* ===================== FORM IDENTITAS ===================== */
+  .identitas-overlay {
+    position: fixed; inset: 0;
+    background: rgba(19,92,56,0.85);
+    backdrop-filter: blur(6px);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .identitas-box {
+    background: white;
+    border-radius: 20px;
+    padding: 40px 36px;
+    width: 100%;
+    max-width: 460px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.2);
+    animation: popIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  @keyframes popIn {
+    from { opacity:0; transform: scale(0.88) translateY(20px); }
+    to { opacity:1; transform: scale(1) translateY(0); }
+  }
+  .identitas-logo {
+    width: 64px; height: 64px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 16px;
+  }
+  .identitas-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--green-dark);
+    text-align: center;
+    margin-bottom: 4px;
+  }
+  .identitas-sub {
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+  }
+  .form-group { margin-bottom: 16px; }
+  .form-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-800);
+    margin-bottom: 6px;
+  }
+  .form-input {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--text);
+    background: var(--gray-50);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-input:focus { border-color: var(--green); background: white; }
+  .form-input::placeholder { color: var(--gray-400); }
+  .btn-mulai {
+    width: 100%;
+    background: linear-gradient(135deg, var(--green), var(--teal));
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    margin-top: 8px;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+  .btn-mulai:hover { opacity: 0.92; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(26,127,78,0.3); }
+  .btn-mulai:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+  /* Info siswa di atas soal */
+  .siswa-info-bar {
+    background: white;
+    border: 1px solid var(--gray-100);
+    border-radius: var(--radius-sm);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .siswa-avatar {
+    width: 42px; height: 42px;
+    background: linear-gradient(135deg, var(--green), var(--teal));
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 18px; flex-shrink: 0;
+  }
+  .siswa-detail { flex: 1; }
+  .siswa-nama { font-size: 15px; font-weight: 700; color: var(--gray-800); }
+  .siswa-meta { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+  .btn-ganti {
+    font-size: 12px; font-weight: 600; color: var(--green);
+    background: var(--green-light); border: none;
+    padding: 6px 14px; border-radius: 100px;
+    cursor: pointer; font-family: inherit;
+  }
+  .btn-ganti:hover { background: var(--gray-200); }
+
   /* DIVIDER */
   .divider { border: none; border-top: 1px solid var(--gray-100); margin: 0; }
 </style>
 </head>
 <body>
+
+
+<!-- FORM IDENTITAS -->
+<div class="identitas-overlay" id="identitas-overlay" style="display:none;">
+  <div class="identitas-box">
+    <img src="" alt="Logo UKS" class="identitas-logo" id="identitas-logo">
+    <div class="identitas-title">Selamat Datang! 👋</div>
+    <div class="identitas-sub">Isi data dirimu sebelum mengerjakan soal latihan UKS</div>
+    <div class="form-group">
+      <label class="form-label">Nama Lengkap *</label>
+      <input type="text" class="form-input" id="input-nama" placeholder="Contoh: Siti Nurhaliza" maxlength="60">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Kelas *</label>
+      <input type="text" class="form-input" id="input-kelas" placeholder="Contoh: XI / XII" maxlength="20">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Jurusan *</label>
+      <select class="form-input" id="input-jurusan">
+        <option value="">-- Pilih Jurusan --</option>
+        <option>Teknik Kendaraan Ringan</option>
+        <option>Teknik Instalasi Tenaga Listrik</option>
+        <option>Konstruksi Jalan dan Jembatan</option>
+        <option>Teknik Sepeda Motor</option>
+        <option>Teknik Pengelasan</option>
+        <option>Teknik Elektronika Industri</option>
+        <option>Desain Pemodelan dan Informasi Bangunan</option>
+        <option>Teknik Pemanasan, Tata Udara, dan Pendinginan</option>
+        <option>Agribisnis Pengolahan Hasil Pertanian</option>
+        <option>Agribisnis Pengolahan Hasil Perikanan</option>
+        <option>Desain Komunikasi Visual</option>
+        <option>Teknik Grafika</option>
+      </select>
+    </div>
+    <button class="btn-mulai" id="btn-mulai-soal" onclick="mulaiSoal()">Mulai Mengerjakan Soal →</button>
+  </div>
+</div>
 
 <nav>
   <div class="nav-inner">
@@ -478,6 +672,7 @@
       <li><a href="#" id="nav-profil" onclick="showPage('profil')">Profil</a></li>
       <li><a href="#" id="nav-program" onclick="showPage('program')">Program</a></li>
       <li><a href="#" id="nav-soal" onclick="showPage('soal')">Soal Latihan</a></li>
+      <li><a href="#" id="nav-trias" onclick="showPage('trias')">Trias UKS</a></li>
       <li><a href="#" id="nav-kontak" onclick="showPage('kontak')">Kontak</a></li>
     </ul>
   </div>
@@ -530,7 +725,7 @@
       <div class="card">
         <div class="card-icon icon-green">🏥</div>
         <h3>Klinik Sekolah</h3>
-        <p>Pelayanan kesehatan dasar bagi siswa dan guru, tersedia setiap hari sekolah dengan Anggota UKS terlatih.</p>
+        <p>Pelayanan kesehatan dasar bagi siswa dan guru, tersedia setiap hari sekolah dengan tenaga terlatih.</p>
       </div>
       <div class="card">
         <div class="card-icon icon-teal">🌿</div>
@@ -555,7 +750,7 @@
       <div class="card">
         <div class="card-icon icon-amber">🤝</div>
         <h3>Kader Kesehatan</h3>
-        <p>Pelatihan siswa sebagai Anggota UKS yang siap membantu teman-temannya dalam kedaruratan.</p>
+        <p>Pelatihan siswa sebagai kader kesehatan sekolah yang siap membantu teman-temannya dalam kedaruratan.</p>
       </div>
     </div>
   </div>
@@ -596,7 +791,7 @@
       <div class="profile-img">🏫</div>
       <div class="profile-content">
         <h2>Mengenal UKS SMKN 1 Rangas</h2>
-        <p>Usaha Kesehatan Sekolah (UKS) UPTD SMKN 1 Rangas adalah unit pelayanan kesehatan yang berkedudukan di lingkungan UPTD SMKN 1 Rangas, Kabupaten Mamuju, Provinsi Sulawesi Barat.</p>
+        <p>Usaha Kesehatan Sekolah (UKS) UPTD SMKN 1 Rangas adalah unit pelayanan kesehatan yang berkedudukan di lingkungan SMKN 1 Rangas, Kabupaten Mamuju, Provinsi Sulawesi Barat.</p>
         <p>UKS kami berdiri sejak tahun 2021 dan terus berkembang sebagai pusat layanan kesehatan, edukasi, dan pembinaan perilaku hidup sehat bagi seluruh warga sekolah — siswa, guru, dan tenaga kependidikan.</p>
         <p>Dengan semangat <strong>"Sehat, Aktif, Berprestasi"</strong>, UKS SMKN 1 Rangas berkomitmen mewujudkan generasi muda yang sehat jasmani dan rohani, siap menghadapi tantangan masa depan.</p>
       </div>
@@ -630,7 +825,7 @@
         <ul>
           <li>Pembina: Kepala Sekolah</li>
           <li>Koordinator UKS: Guru Pembina</li>
-          <li>Pengurus inti UKS : 7 Orang</li>
+          <li>Pengurus Inti UKS : 6 oraang</li>
           <li>Anggota UKS : 65 orang</li>
         </ul>
       </div>
@@ -697,6 +892,16 @@
     <div class="section-title">Soal Latihan UKS & P3K</div>
     <p class="section-desc">Uji pengetahuanmu tentang UKS, Pertolongan Pertama, penanganan pingsan, luka, dan kecelakaan di lingkungan sekolah.</p>
 
+    <!-- Info Siswa -->
+    <div class="siswa-info-bar" id="siswa-info-bar" style="display:none;">
+      <div class="siswa-avatar">👤</div>
+      <div class="siswa-detail">
+        <div class="siswa-nama" id="siswa-nama-text">-</div>
+        <div class="siswa-meta" id="siswa-meta-text">-</div>
+      </div>
+      <button class="btn-ganti" onclick="gantiIdentitas()">Ganti Data</button>
+    </div>
+
     <!-- Filter Kategori -->
     <div id="filter-bar" style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:32px;">
       <button class="filter-btn active" onclick="filterKategori('semua')">Semua</button>
@@ -742,6 +947,143 @@
   </div>
 </div>
 
+<!-- TRIAS UKS -->
+<div class="page" id="page-trias">
+  <div class="section" style="padding-top: 60px;">
+    <div class="section-tag">Program Pokok</div>
+    <div class="section-title">Trias UKS</div>
+    <p class="section-desc">Tiga pilar utama Usaha Kesehatan Sekolah yang menjadi landasan seluruh kegiatan UKS SMKN 1 Rangas.</p>
+
+    <!-- Kartu 3 Pilar -->
+    <div class="cards-grid" style="margin-bottom: 56px;">
+      <div class="card" style="border-top: 4px solid var(--green); cursor:pointer;" onclick="scrollToTrias('pendidikan')">
+        <div class="card-icon icon-green">📚</div>
+        <h3>1. Pendidikan Kesehatan</h3>
+        <p style="font-style:italic; color:var(--green); font-size:13px; margin-bottom:8px;">Health Education</p>
+        <p>Memberikan pengetahuan dan membentuk perilaku hidup sehat kepada seluruh warga sekolah melalui pembelajaran dan pembiasaan.</p>
+      </div>
+      <div class="card" style="border-top: 4px solid var(--teal); cursor:pointer;" onclick="scrollToTrias('pelayanan')">
+        <div class="card-icon icon-teal">🏥</div>
+        <h3>2. Pelayanan Kesehatan</h3>
+        <p style="font-style:italic; color:var(--teal); font-size:13px; margin-bottom:8px;">Health Service</p>
+        <p>Memberikan pelayanan kesehatan langsung kepada siswa dan warga sekolah, mulai dari promotif, preventif, hingga kuratif.</p>
+      </div>
+      <div class="card" style="border-top: 4px solid var(--accent); cursor:pointer;" onclick="scrollToTrias('lingkungan')">
+        <div class="card-icon icon-amber">🌿</div>
+        <h3>3. Pembinaan Lingkungan Sehat</h3>
+        <p style="font-style:italic; color:var(--accent); font-size:13px; margin-bottom:8px;">Healthy Environment</p>
+        <p>Menciptakan dan memelihara lingkungan sekolah yang bersih, sehat, aman, dan kondusif untuk kegiatan belajar mengajar.</p>
+      </div>
+    </div>
+
+    <!-- Detail 1: Pendidikan Kesehatan -->
+    <div id="trias-pendidikan" style="margin-bottom: 48px;">
+      <div style="display:flex; align-items:center; gap:16px; margin-bottom:24px;">
+        <div style="width:56px; height:56px; border-radius:16px; background:var(--green-light); display:flex; align-items:center; justify-content:center; font-size:28px; flex-shrink:0;">📚</div>
+        <div>
+          <div class="section-tag" style="margin-bottom:4px;">Pilar 1</div>
+          <h2 style="font-family:'DM Serif Display',serif; font-size:28px; color:var(--gray-800); line-height:1.2;">Pendidikan Kesehatan<br><span style="font-size:16px; font-weight:400; font-family:'Plus Jakarta Sans',sans-serif; color:var(--text-muted); font-style:italic;">Health Education</span></h2>
+        </div>
+      </div>
+      <div style="background:white; border-radius:var(--radius); border:1px solid var(--gray-100); padding:32px;">
+        <p style="color:var(--text-muted); line-height:1.8; margin-bottom:20px;">Pendidikan Kesehatan bertujuan agar peserta didik memiliki pengetahuan tentang kesehatan, termasuk cara hidup sehat, dan memiliki nilai serta sikap yang positif terhadap prinsip hidup sehat.</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+          <div style="background:var(--green-light); border-radius:var(--radius-sm); padding:18px;">
+            <div style="font-weight:700; color:var(--green-dark); margin-bottom:8px;">🎯 Tujuan</div>
+            <ul style="padding-left:16px; color:var(--text-muted); font-size:14px; line-height:1.8;">
+              <li>Meningkatkan pengetahuan kesehatan siswa</li>
+              <li>Membentuk sikap hidup sehat</li>
+              <li>Menumbuhkan perilaku sehat sebagai kebiasaan</li>
+              <li>Melatih siswa menjadi kader kesehatan</li>
+            </ul>
+          </div>
+          <div style="background:var(--gray-50); border-radius:var(--radius-sm); padding:18px;">
+            <div style="font-weight:700; color:var(--gray-800); margin-bottom:8px;">📋 Kegiatan</div>
+            <ul style="padding-left:16px; color:var(--text-muted); font-size:14px; line-height:1.8;">
+              <li>Penyuluhan PHBS di kelas</li>
+              <li>Pelatihan P3K & kader UKS</li>
+              <li>Kampanye cuci tangan & sikat gigi</li>
+              <li>Seminar kesehatan reproduksi remaja</li>
+              <li>Sosialisasi bahaya narkoba & rokok</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detail 2: Pelayanan Kesehatan -->
+    <div id="trias-pelayanan" style="margin-bottom: 48px;">
+      <div style="display:flex; align-items:center; gap:16px; margin-bottom:24px;">
+        <div style="width:56px; height:56px; border-radius:16px; background:var(--teal-light); display:flex; align-items:center; justify-content:center; font-size:28px; flex-shrink:0;">🏥</div>
+        <div>
+          <div class="section-tag" style="margin-bottom:4px; background:var(--teal-light); color:var(--teal);">Pilar 2</div>
+          <h2 style="font-family:'DM Serif Display',serif; font-size:28px; color:var(--gray-800); line-height:1.2;">Pelayanan Kesehatan<br><span style="font-size:16px; font-weight:400; font-family:'Plus Jakarta Sans',sans-serif; color:var(--text-muted); font-style:italic;">Health Service</span></h2>
+        </div>
+      </div>
+      <div style="background:white; border-radius:var(--radius); border:1px solid var(--gray-100); padding:32px;">
+        <p style="color:var(--text-muted); line-height:1.8; margin-bottom:20px;">Pelayanan Kesehatan di sekolah dilaksanakan secara menyeluruh meliputi upaya promotif (peningkatan kesehatan), preventif (pencegahan), kuratif (pengobatan), dan rehabilitatif (pemulihan).</p>
+        <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:16px;">
+          <div style="background:var(--teal-light); border-radius:var(--radius-sm); padding:18px;">
+            <div style="font-weight:700; color:var(--teal); margin-bottom:8px;">🎯 Tujuan</div>
+            <ul style="padding-left:16px; color:var(--text-muted); font-size:14px; line-height:1.8;">
+              <li>Meningkatkan derajat kesehatan siswa</li>
+              <li>Memantau pertumbuhan & perkembangan</li>
+              <li>Deteksi dini gangguan kesehatan</li>
+              <li>Memberikan pertolongan pertama</li>
+            </ul>
+          </div>
+          <div style="background:var(--gray-50); border-radius:var(--radius-sm); padding:18px;">
+            <div style="font-weight:700; color:var(--gray-800); margin-bottom:8px;">📋 Kegiatan</div>
+            <ul style="padding-left:16px; color:var(--text-muted); font-size:14px; line-height:1.8;">
+              <li>Pemeriksaan kesehatan berkala</li>
+              <li>Pelayanan P3K di klinik sekolah</li>
+              <li>Imunisasi bersama Puskesmas</li>
+              <li>Penjaringan kesehatan siswa baru</li>
+              <li>Rujukan ke fasilitas kesehatan</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detail 3: Pembinaan Lingkungan Sehat -->
+    <div id="trias-lingkungan">
+      <div style="display:flex; align-items:center; gap:16px; margin-bottom:24px;">
+        <div style="width:56px; height:56px; border-radius:16px; background:var(--accent-light); display:flex; align-items:center; justify-content:center; font-size:28px; flex-shrink:0;">🌿</div>
+        <div>
+          <div class="section-tag" style="margin-bottom:4px; background:var(--accent-light); color:var(--accent);">Pilar 3</div>
+          <h2 style="font-family:'DM Serif Display',serif; font-size:28px; color:var(--gray-800); line-height:1.2;">Pembinaan Lingkungan Sehat<br><span style="font-size:16px; font-weight:400; font-family:'Plus Jakarta Sans',sans-serif; color:var(--text-muted); font-style:italic;">Healthy Environment</span></h2>
+        </div>
+      </div>
+      <div style="background:white; border-radius:var(--radius); border:1px solid var(--gray-100); padding:32px;">
+        <p style="color:var(--text-muted); line-height:1.8; margin-bottom:20px;">Pembinaan Lingkungan Sekolah Sehat mencakup upaya menciptakan suasana dan kondisi sekolah yang mendukung terwujudnya perilaku hidup sehat bagi seluruh warga sekolah.</p>
+        <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:16px;">
+          <div style="background:var(--accent-light); border-radius:var(--radius-sm); padding:18px;">
+            <div style="font-weight:700; color:#7a5000; margin-bottom:8px;">🎯 Tujuan</div>
+            <ul style="padding-left:16px; color:var(--text-muted); font-size:14px; line-height:1.8;">
+              <li>Menciptakan lingkungan bersih & sehat</li>
+              <li>Mencegah penyakit berbasis lingkungan</li>
+              <li>Membangun budaya bersih warga sekolah</li>
+              <li>Mengembangkan sekolah sehat</li>
+            </ul>
+          </div>
+          <div style="background:var(--gray-50); border-radius:var(--radius-sm); padding:18px;">
+            <div style="font-weight:700; color:var(--gray-800); margin-bottom:8px;">📋 Kegiatan</div>
+            <ul style="padding-left:16px; color:var(--text-muted); font-size:14px; line-height:1.8;">
+              <li>Penghijauan & taman sekolah</li>
+              <li>Pengelolaan sampah & kompos</li>
+              <li>Pemeliharaan toilet bersih & layak</li>
+              <li>Penyediaan air bersih & wastafel</li>
+              <li>Kantin sehat & bebas junk food</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <!-- KONTAK -->
 <div class="page" id="page-kontak">
   <div class="section" style="padding-top: 60px;">
@@ -763,14 +1105,14 @@
             <div class="info-icon">📍</div>
             <div>
               <div class="info-label">Alamat</div>
-              <div class="info-value">Jl.Abd Malik Pattana Endeng <br>Kab.Mamuju, Prov.Sulawesi Barat</div>
+              <div class="info-value">Jl. Abd Malik Pattana Endeng <br>Kab. Mamuju, Prov.Sulawesi Barat</div>
             </div>
           </li>
           <li class="info-item">
             <div class="info-icon">📞</div>
             <div>
               <div class="info-label">Telepon</div>
-              <div class="info-value">0853-9428-1718
+              <div class="info-value">0853-9428-1718</div>
             </div>
           </li>
           <li class="info-item">
@@ -791,17 +1133,14 @@
             <div class="info-icon">📱</div>
             <div>
               <div class="info-label">WhatsApp UKS</div>
-              <div class="info-value">0853-9428-1718</div>
+              <div class="info-value">0812-3456-7890</div>
             </div>
           </li>
         </ul>
       </div>
       <div>
-        <div class="map-box">
-          <div class="map-icon">📍</div>
-          <strong style="color: var(--green); font-size: 16px;">UPTD SMKN 1 Rangas</strong>
-          <p>Rangas, Mamuju<br>Sulawesi Barat</p>
-          <p style="font-size: 13px; margin-top: 8px;"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3985.5215742782116!2d118.8461903749693!3d-2.6593156973183567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d92d838a39ca4e9%3A0x3cf0fe893ebc4687!2sSMKN%201%20Rangas!5e0!3m2!1sid!2sid!4v1778564629222!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></p>
+        <div style="border-radius: var(--radius); overflow: hidden; border: 1px solid var(--gray-200); height: 380px;">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3985.5215742782116!2d118.8461903749693!3d-2.6593156973183567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d92d838a39ca4e9%3A0x3cf0fe893ebc4687!2sSMKN%201%20Rangas!5e0!3m2!1sid!2sid!4v1778574324808!5m2!1sid!2sid" width="100%" height="100%" style="border:0; display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
     </div>
@@ -920,12 +1259,13 @@ const soalContoh = [
 ];
 
 // =============================================
-// STATE KUIS
+// STATE KUIS & IDENTITAS
 // =============================================
 let soalData = [];
 let soalFiltered = [];
 let jawabanUser = {};
 let kategoriAktif = 'semua';
+let siswaData = null; // { nama, kelas, jurusan }
 
 // =============================================
 // NAVIGASI HALAMAN
@@ -936,11 +1276,76 @@ function showPage(name) {
   document.getElementById('page-' + name).classList.add('active');
   document.getElementById('nav-' + name).classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
-  if (name === 'soal' && soalData.length === 0) {
-    initSoal();
+  if (name === 'soal') {
+    if (!siswaData) {
+      // Tampilkan form identitas
+      tampilkanFormIdentitas();
+    } else {
+      tampilkanInfoSiswa();
+      if (soalData.length === 0) initSoal();
+    }
   }
   return false;
 }
+
+function tampilkanFormIdentitas() {
+  const overlay = document.getElementById('identitas-overlay');
+  // Salin logo ke form
+  const navLogo = document.querySelector('.nav-logo');
+  if (navLogo) document.getElementById('identitas-logo').src = navLogo.src;
+  overlay.style.display = 'flex';
+  document.getElementById('input-nama').focus();
+}
+
+function mulaiSoal() {
+  const nama = document.getElementById('input-nama').value.trim();
+  const kelas = document.getElementById('input-kelas').value.trim();
+  const jurusan = document.getElementById('input-jurusan').value;
+  if (!nama) { document.getElementById('input-nama').focus(); shakInput('input-nama'); return; }
+  if (!kelas) { document.getElementById('input-kelas').focus(); shakInput('input-kelas'); return; }
+  if (!jurusan) { shakInput('input-jurusan'); return; }
+
+  siswaData = { nama, kelas, jurusan };
+  document.getElementById('identitas-overlay').style.display = 'none';
+  tampilkanInfoSiswa();
+  if (soalData.length === 0) initSoal();
+}
+
+function shakInput(id) {
+  const el = document.getElementById(id);
+  el.style.borderColor = '#dc2626';
+  el.style.animation = 'shake 0.3s ease';
+  setTimeout(() => { el.style.animation = ''; el.style.borderColor = ''; }, 400);
+}
+
+function tampilkanInfoSiswa() {
+  if (!siswaData) return;
+  document.getElementById('siswa-info-bar').style.display = 'flex';
+  document.getElementById('siswa-nama-text').textContent = siswaData.nama;
+  document.getElementById('siswa-meta-text').textContent = 'Kelas ' + siswaData.kelas + ' · ' + siswaData.jurusan;
+}
+
+function gantiIdentitas() {
+  siswaData = null;
+  soalData = [];
+  soalFiltered = [];
+  jawabanUser = {};
+  document.getElementById('siswa-info-bar').style.display = 'none';
+  document.getElementById('soal-grid').innerHTML = '';
+  document.getElementById('hasil-box').style.display = 'none';
+  document.getElementById('btn-selesai-wrap').style.display = 'none';
+  document.getElementById('soal-config-info').style.display = 'none';
+  // Reset filter
+  document.querySelectorAll('.filter-btn').forEach((b,i) => b.classList.toggle('active', i===0));
+  tampilkanFormIdentitas();
+}
+
+// Enter key pada form
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && document.getElementById('identitas-overlay').style.display === 'flex') {
+    mulaiSoal();
+  }
+});
 
 document.querySelectorAll('.nav-links a').forEach(a => {
   a.addEventListener('click', function(e) { e.preventDefault(); });
@@ -1078,7 +1483,8 @@ function selesaiKuis() {
   if (persen >= 80) { emoji = '🎉'; pesan = 'Luar biasa! Pengetahuanmu sangat baik!'; }
   else if (persen >= 60) { emoji = '👍'; pesan = 'Bagus! Terus tingkatkan pengetahuanmu.'; }
   document.getElementById('hasil-emoji').textContent = emoji;
-  document.getElementById('hasil-pesan').textContent = pesan;
+  const namaSiswa = siswaData ? siswaData.nama : '';
+  document.getElementById('hasil-pesan').textContent = (namaSiswa ? namaSiswa + ' — ' : '') + pesan;
 
   hasilBox.style.display = 'block';
   hasilBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -1093,6 +1499,16 @@ function resetKuis() {
   renderSoal(soalFiltered);
   document.getElementById('hasil-box').style.display = 'none';
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// =============================================
+// SCROLL KE DETAIL TRIAS
+// =============================================
+function scrollToTrias(id) {
+  const el = document.getElementById('trias-' + id);
+  if (el) {
+    setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+  }
 }
 </script>
 </body>
