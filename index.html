@@ -614,6 +614,86 @@
   }
   .btn-ganti:hover { background: var(--gray-200); }
 
+
+  /* ===================== PENGURUS ===================== */
+  .pengurus-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 8px;
+  }
+  .pengurus-card {
+    background: white;
+    border-radius: var(--radius);
+    border: 1px solid var(--gray-100);
+    padding: 32px 24px;
+    text-align: center;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .pengurus-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--green), var(--teal));
+  }
+  .pengurus-card.ketua::before { background: linear-gradient(90deg, #f0a500, #f97316); }
+  .pengurus-card.pembina::before { background: linear-gradient(90deg, var(--teal), #0891b2); }
+  .pengurus-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+  .pengurus-avatar {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px;
+    font-weight: 800;
+    color: white;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, var(--green), var(--teal));
+    box-shadow: 0 4px 16px rgba(26,127,78,0.25);
+  }
+  .pengurus-card.ketua .pengurus-avatar { background: linear-gradient(135deg, #f0a500, #f97316); box-shadow: 0 4px 16px rgba(240,165,0,0.3); }
+  .pengurus-card.pembina .pengurus-avatar { background: linear-gradient(135deg, var(--teal), #0891b2); box-shadow: 0 4px 16px rgba(13,148,136,0.3); }
+  .pengurus-card.kepala .pengurus-avatar { background: linear-gradient(135deg, var(--green-dark), var(--green)); box-shadow: 0 4px 16px rgba(19,92,56,0.3); }
+  .pengurus-jabatan {
+    display: inline-block;
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.6px;
+    padding: 4px 12px; border-radius: 100px;
+    background: var(--green-light); color: var(--green);
+    margin-bottom: 10px;
+  }
+  .pengurus-card.ketua .pengurus-jabatan { background: var(--accent-light); color: #92400e; }
+  .pengurus-card.pembina .pengurus-jabatan { background: var(--teal-light); color: var(--teal); }
+  .pengurus-card.kepala .pengurus-jabatan { background: var(--green-light); color: var(--green-dark); }
+  .pengurus-nama {
+    font-size: 16px; font-weight: 700;
+    color: var(--gray-800); line-height: 1.4;
+    margin-bottom: 4px;
+  }
+  .pengurus-unit {
+    font-size: 12px; color: var(--text-muted); line-height: 1.5;
+  }
+  /* Kepala sekolah — full width card */
+  .pengurus-kepala-wrap {
+    margin-bottom: 24px;
+  }
+  .pengurus-kepala-wrap .pengurus-card {
+    max-width: 380px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 768px) {
+    .pengurus-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .pengurus-avatar { width: 64px; height: 64px; font-size: 24px; }
+    .pengurus-nama { font-size: 14px; }
+  }
+  @media (max-width: 480px) {
+    .pengurus-grid { grid-template-columns: 1fr; }
+  }
+
   /* DIVIDER */
   .divider { border: none; border-top: 1px solid var(--gray-100); margin: 0; }
 </style>
@@ -670,6 +750,7 @@
     <ul class="nav-links">
       <li><a href="#" class="active" id="nav-beranda" onclick="showPage('beranda')">Beranda</a></li>
       <li><a href="#" id="nav-profil" onclick="showPage('profil')">Profil</a></li>
+      <li><a href="#" id="nav-pengurus" onclick="showPage('pengurus')">Pengurus</a></li>
       <li><a href="#" id="nav-program" onclick="showPage('program')">Program</a></li>
       <li><a href="#" id="nav-soal" onclick="showPage('soal')">Soal Latihan</a></li>
       <li><a href="#" id="nav-trias" onclick="showPage('trias')">Trias UKS</a></li>
@@ -790,7 +871,7 @@
     <div class="profile-layout">
       <div class="profile-img">🏫</div>
       <div class="profile-content">
-        <h2>Mengenal UKS SMKN 1 Rangas</h2>
+        <h2>Mengenal UKS UPTD SMKN 1 Rangas</h2>
         <p>Usaha Kesehatan Sekolah (UKS) UPTD SMKN 1 Rangas adalah unit pelayanan kesehatan yang berkedudukan di lingkungan SMKN 1 Rangas, Kabupaten Mamuju, Provinsi Sulawesi Barat.</p>
         <p>UKS kami berdiri sejak tahun 2021 dan terus berkembang sebagai pusat layanan kesehatan, edukasi, dan pembinaan perilaku hidup sehat bagi seluruh warga sekolah — siswa, guru, dan tenaga kependidikan.</p>
         <p>Dengan semangat <strong>"Sehat, Aktif, Berprestasi"</strong>, UKS SMKN 1 Rangas berkomitmen mewujudkan generasi muda yang sehat jasmani dan rohani, siap menghadapi tantangan masa depan.</p>
@@ -825,10 +906,68 @@
         <ul>
           <li>Pembina: Kepala Sekolah</li>
           <li>Koordinator UKS: Guru Pembina</li>
-          <li>Pengurus Inti UKS : 6 oraang</li>
-          <li>Anggota UKS : 65 orang</li>
+          <li>Pengurus Inti UKS : 6 Orang</li>
+          <li>Anggota UKS : 65 orang<li>
         </ul>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- PENGURUS -->
+<div class="page" id="page-pengurus">
+  <div class="section" style="padding-top: 60px;">
+    <div class="section-tag">Struktur Organisasi</div>
+    <div class="section-title">Pengurus UKS</div>
+    <p class="section-desc">Kenali para pengurus yang dengan penuh dedikasi menjalankan program Usaha Kesehatan Sekolah di UPTD SMKN 1 Rangas.</p>
+
+    <!-- Kepala Sekolah -->
+    <div class="pengurus-kepala-wrap">
+      <div class="pengurus-card kepala">
+        <div class="pengurus-avatar">MH</div>
+        <div class="pengurus-jabatan">Kepala Sekolah UPTD SMKN 1 RANGAS</div>
+        <div class="pengurus-nama">Drs. H. Mahmud, M.Si</div>
+      </div>
+    </div>
+
+    <!-- Pengurus Inti -->
+    <div class="pengurus-grid">
+
+      <!-- Pembina -->
+      <div class="pengurus-card pembina">
+        <div class="pengurus-avatar">PS</div>
+        <div class="pengurus-jabatan">Pembina UKS UPTD SMKN 1 Rangas</div>
+        <div class="pengurus-nama">Patmawati, S.Pd</div>
+      </div>
+
+      <!-- Ketua -->
+      <div class="pengurus-card ketua">
+        <div class="pengurus-avatar">SA</div>
+        <div class="pengurus-jabatan">Ketua UKS UPTD SMKN 1 Rangas</div>
+        <div class="pengurus-nama">Suci Ardi</div>
+      </div>
+
+      <!-- Wakil Ketua -->
+      <div class="pengurus-card">
+        <div class="pengurus-avatar">MZ</div>
+        <div class="pengurus-jabatan">Wakil Ketua UKS UPTD SMKN 1 Rangas</div>
+        <div class="pengurus-nama">M. Zulham</div>
+      </div>
+
+      <!-- Sekretaris -->
+      <div class="pengurus-card">
+        <div class="pengurus-avatar">ND</div>
+        <div class="pengurus-jabatan">Sekretaris UKS UPTD SMKN 1 Rangas</div>
+        <div class="pengurus-nama">Nurmadina D</div>
+      </div>
+
+      <!-- Bendahara -->
+      <div class="pengurus-card">
+        <div class="pengurus-avatar">MR</div>
+        <div class="pengurus-jabatan">Bendahara UKS UPTD SMKN 1 Rangas</div>
+        <div class="pengurus-nama">Mustika Herni Ramadhani</div>
+      </div>
+
     </div>
   </div>
 </div>
@@ -1105,14 +1244,14 @@
             <div class="info-icon">📍</div>
             <div>
               <div class="info-label">Alamat</div>
-              <div class="info-value">Jl. Abd Malik Pattana Endeng <br>Kab. Mamuju, Prov.Sulawesi Barat</div>
+              <div class="info-value">Jl. Abd Malik Pattana Endeng <br>Kab.Mamuju Prov.Sulawesi Barat</div>
             </div>
           </li>
           <li class="info-item">
             <div class="info-icon">📞</div>
             <div>
               <div class="info-label">Telepon</div>
-              <div class="info-value">0853-9428-1718</div>
+              <div class="info-value">(0426) 123-456</div>
             </div>
           </li>
           <li class="info-item">
@@ -1133,7 +1272,7 @@
             <div class="info-icon">📱</div>
             <div>
               <div class="info-label">WhatsApp UKS</div>
-              <div class="info-value">0812-3456-7890</div>
+              <div class="info-value">0853-9428-1718</div>
             </div>
           </li>
         </ul>
@@ -1297,7 +1436,7 @@ function tampilkanFormIdentitas() {
   document.getElementById('input-nama').focus();
 }
 
-function mulaiSoal() {
+async function mulaiSoal() {
   const nama = document.getElementById('input-nama').value.trim();
   const kelas = document.getElementById('input-kelas').value.trim();
   const jurusan = document.getElementById('input-jurusan').value;
@@ -1305,10 +1444,45 @@ function mulaiSoal() {
   if (!kelas) { document.getElementById('input-kelas').focus(); shakInput('input-kelas'); return; }
   if (!jurusan) { shakInput('input-jurusan'); return; }
 
+  const btn = document.getElementById('btn-mulai-soal');
+  btn.disabled = true;
+  btn.textContent = 'Menyimpan data...';
+
   siswaData = { nama, kelas, jurusan };
+
+  // Simpan ke Supabase
+  await simpanSiswaKeSupabase(nama, kelas, jurusan);
+
+  btn.disabled = false;
+  btn.textContent = 'Mulai Mengerjakan Soal →';
+
   document.getElementById('identitas-overlay').style.display = 'none';
   tampilkanInfoSiswa();
   if (soalData.length === 0) initSoal();
+}
+
+async function simpanSiswaKeSupabase(nama, kelas, jurusan) {
+  if (!SUPABASE_URL || !SUPABASE_KEY) return;
+  try {
+    await fetch(`${SUPABASE_URL}/rest/v1/peserta_soal`, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_KEY,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({
+        nama: nama,
+        kelas: kelas,
+        jurusan: jurusan,
+        waktu_mulai: new Date().toISOString()
+      })
+    });
+    console.log('✅ Data siswa tersimpan ke Supabase');
+  } catch(e) {
+    console.warn('⚠️ Gagal simpan ke Supabase:', e);
+  }
 }
 
 function shakInput(id) {
